@@ -1,0 +1,22 @@
+.customEditor {
+  padding-top: 50px;
+}
+
+.taskInputTitle {
+  width: 800px;
+
+  font-size: 22px;
+}
+.datePick {
+  background-color: #fff;
+  width: 771px;
+  /* margin-top: 20px; */
+  border: none;
+}
+.containerTaskcreate {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0px;
+}
