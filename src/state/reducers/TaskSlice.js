@@ -13,7 +13,7 @@ export const taskSlice = createSlice({
       state.tasks.push(payload);
     },
     deleteTask: (state, { payload }) => {
-      state.tasks = state.tasks.filter((task) => task._id != payload);
+      state.tasks = state.tasks.filter((task) => task._id !== payload);
     },
     updateTask: (state, { payload }) => {
       const index = state.tasks.findIndex((task) => task._id === payload.id);
@@ -23,10 +23,14 @@ export const taskSlice = createSlice({
         state.tasks[index].complete = false;
       }
     },
+    setTaskBlank: (state) => {
+      state.tasks = [];
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { getTask, addTask, deleteTask, updateTask } = taskSlice.actions;
+export const { getTask, addTask, deleteTask, updateTask, setTaskBlank } =
+  taskSlice.actions;
 
 export default taskSlice.reducer;

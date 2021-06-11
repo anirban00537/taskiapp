@@ -10,9 +10,10 @@ import {
   deleteTaskApi,
   updateTaskApi,
 } from "../Api/TaskApi";
-export const getAndSetTaskAction = () => async (dispatch) => {
+export const getAndSetTaskAction = (uid) => async (dispatch) => {
   try {
-    const { data } = await getTaskApi();
+    const { data } = await getTaskApi(uid);
+    console.log("calling");
     dispatch(getTask(data));
   } catch (error) {
     console.error(error.message);

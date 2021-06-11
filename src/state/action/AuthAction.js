@@ -1,14 +1,17 @@
 import { setAuthFalse, setAuthTrue } from "../reducers/AuthSlice";
 import { userSigninApi, userSignupApi } from "../Api/AuthApi";
 import { getAndSetTaskAction } from "../action/TaskAction";
+import { setTaskBlank } from "../reducers/TaskSlice";
 export const userSigninAction = (userData) => async (dispatch) => {
   try {
     const { data } = await userSigninApi(userData);
     if (data.token) {
       localStorage.setItem("token", data.token);
       localStorage.setItem("uid", data.user._id);
-
+      console.log("setting auth true");
       dispatch(setAuthTrue());
+      console.log("setting data for task");
+      dispatch(getAndSetTaskAction(data.user._id));
     } else {
       dispatch(setAuthFalse());
     }
@@ -16,6 +19,8 @@ export const userSigninAction = (userData) => async (dispatch) => {
     console.error(error.message);
   }
 };
+
+// export const
 
 export const userSignupAction = (userData) => async (dispatch) => {
   try {
@@ -29,14 +34,23 @@ export const userSignupAction = (userData) => async (dispatch) => {
 export const userLoggedinCheck = () => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
-    if (token) {
-      console.log(token, "found");
+    const uid = localStorage.getItem("uid");
+    if (token && uid) {
       dispatch(setAuthTrue());
-      dispatch(getAndSetTaskAction());
+
+      dispatch(getAndSetTaskAction(uid));
     } else {
       dispatch(setAuthFalse());
     }
   } catch (error) {
     console.error(error.message);
   }
+};
+
+export const logoutFunction = () => async (dispatch) => {
+  try {
+    localStorage.clear();
+    dispatch(setAuthFalse());
+    dispatch(setTaskBlank());
+  } catch (error) {}
 };
