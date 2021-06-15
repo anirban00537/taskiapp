@@ -35,17 +35,19 @@ const TasksHome = () => {
         completed={completed.length}
         incomolete={notCompleted.length}
       />
-      <Text fontSize="3xl" pl="20px">
+      <Text fontSize="3xl" textAlign="center">
         Yous Tasks For today
       </Text>
-      <Grid templateColumns="repeat(4, 1fr)">
+      <Grid templateColumns="repeat(3, 1fr)">
         {tasks.map((task) => (
-          <TaskCard
-            task={task}
-            date={moment(task.date, "YYYYMMDD").fromNow()}
-            deleteTask={deleteTask}
-            updateTaskStatus={updateTaskStatus}
-          />
+          <Flex alignItems="center" justifyContent="center">
+            <TaskCard
+              task={task}
+              date={moment(task.date, "YYYYMMDD").fromNow()}
+              deleteTask={deleteTask}
+              updateTaskStatus={updateTaskStatus}
+            />
+          </Flex>
         ))}
       </Grid>
     </Flex>

@@ -2,13 +2,14 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLoggedinCheck } from "./state/action/AuthAction";
 import "./App.css";
-
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import TasksHome from "./pages/TasksHome";
 import DrawerComponent from "./components/Navbar/DrawerComponent";
 import { Button, Flex, useColorMode } from "@chakra-ui/react";
+import Dashboard from "./pages/Dashboard";
+import Room from "./pages/Room";
 function App() {
   const dispatch = useDispatch();
 
@@ -27,7 +28,9 @@ function AuthRouters() {
     <Flex flexDirection="column">
       <DrawerComponent />
       <Switch>
-        <Route exact path="/" component={TasksHome} />
+        <Route exact path="/" component={Dashboard} />
+        <Route exact path="/personal" component={TasksHome} />
+        <Route exact path="/room" component={Room} />
       </Switch>
     </Flex>
   );

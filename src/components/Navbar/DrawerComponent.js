@@ -45,16 +45,17 @@ const DrawerComponent = () => {
     >
       <Flex alignItems="center" justifyContent="center">
         <HamburgerIcon
-          fontSize="32px"
+          fontSize="25px"
           mt="10px"
-          ml="10px"
+          ml="16px"
           mr="10px"
+          mb="5px"
           onClick={onOpen}
         />
-        <Text fontSize="3xl">
-          <CalendarIcon mr="10px" />
+        {/* <Text fontSize="2xl" ml="30px">
+          <CalendarIcon mr="5px" />
           Taski
-        </Text>
+        </Text> */}
       </Flex>
 
       <Menu>

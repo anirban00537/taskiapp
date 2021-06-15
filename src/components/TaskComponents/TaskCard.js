@@ -18,7 +18,6 @@ import TaskModal from "./TaskModal";
 
 const TaskCard = ({ task, date, deleteTask, updateTaskStatus }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   return (
     <Box
       maxW="sm"
@@ -28,7 +27,6 @@ const TaskCard = ({ task, date, deleteTask, updateTaskStatus }) => {
       overflow="hidden"
       width="340px"
       padding="20px"
-      ml="10px"
       mt="20px"
       onDoubleClick={() => {
         task.complete === true

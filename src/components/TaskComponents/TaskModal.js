@@ -24,7 +24,7 @@ const TaskModal = ({ isOpen, date, onClose, task }) => {
         <ModalCloseButton />
         <ModalBody>
           <Flex flexDirection="column" alignItems="flex-start">
-            <Badge m="0px" p="4px" colorScheme="blackAlpha">
+            <Badge m="0px" p="4px">
               <TimeIcon mr="6px" />
               {date}
             </Badge>
