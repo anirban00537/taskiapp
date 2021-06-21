@@ -23,8 +23,9 @@ const CreateBoard = () => {
         borderWidth="1px"
         p="20px"
         onClick={onOpen}
+        backgroundColor="#70a1ff"
       >
-        <AddIcon fontSize="2xl" />
+        <AddIcon fontSize="2xl" color="white" fontWeight="bold" />
       </Button>
       <Drawer
         isOpen={isOpen}

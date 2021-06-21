@@ -28,17 +28,23 @@ const TasksHome = () => {
     dispatch(getAndSetTaskAction(uid));
   }, []);
   return (
-    <Flex className="" width="100%" flexDirection="column">
+    <Flex
+      className=""
+      width="100%"
+      flexDirection="column"
+      backgroundColor="gray.100"
+      height="100vh"
+    >
       <TaskStats
         total={tasks.length}
         tasks={tasks}
         completed={completed.length}
         incomolete={notCompleted.length}
       />
-      <Text fontSize="3xl" textAlign="center">
-        Yous Tasks For today
+      <Text fontSize="3xl" fontWeight="bold" color="#a9aec4" textAlign="center">
+        Yous All Tasks
       </Text>
-      <Grid templateColumns="repeat(3, 1fr)">
+      <Grid templateColumns="repeat(5, 1fr)">
         {tasks.map((task) => (
           <Flex alignItems="center" justifyContent="center">
             <TaskCard

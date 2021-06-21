@@ -12,7 +12,7 @@ import {
   DrawerHeader,
   DrawerOverlay,
 } from "@chakra-ui/modal";
-import { Input } from "@chakra-ui/react";
+import { Input, Textarea } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -23,10 +23,13 @@ const AddTask = () => {
   const uid = localStorage.getItem("uid");
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
+  const [description, setdescription] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const firstField = useRef();
   const submitTask = () => {
-    dispatch(createAndUpdateTaskAction({ date: startDate, title, uid }));
+    dispatch(
+      createAndUpdateTaskAction({ date: startDate, description, title, uid })
+    );
   };
   return (
     <>
@@ -60,6 +63,17 @@ const AddTask = () => {
                     setTitle(e.target.value);
                   }}
                   placeholder="Please enter your task"
+                />
+              </Box>
+              <Box>
+                <FormLabel htmlFor="username">Description</FormLabel>
+                <Textarea
+                  value={description}
+                  onChange={(e) => {
+                    setdescription(e.target.value);
+                  }}
+                  placeholder="Here is a sample placeholder"
+                  size="sm"
                 />
               </Box>
 

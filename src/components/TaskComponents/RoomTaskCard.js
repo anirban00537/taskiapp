@@ -6,6 +6,8 @@ import {
   Flex,
   Text,
   useDisclosure,
+  Select,
+  Progress,
 } from "@chakra-ui/react";
 import {
   ArrowRightIcon,
@@ -14,66 +16,93 @@ import {
   CheckIcon,
   CloseIcon,
 } from "@chakra-ui/icons";
-import { Kbd } from "@chakra-ui/react";
+import RoomTaskModalDetails from "./RoomTaskModalDetails";
+
 const RoomTaskCard = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box
       maxW="sm"
-      borderWidth="1px"
-      borderColor="gray.350"
-      borderRadius="lg"
+      borderRadius="10px"
+      backgroundColor="white"
       overflow="hidden"
-      width="340px"
+      width="270px"
       padding="20px"
       mt="20px"
+      borderWidth="1px"
+      borderColor="gray.100"
+      // backgroundColor="gray.50"
+
+      // backgroundColor="gray.50"
+      boxShadow="md"
+      // onDoubleClick={() => {
+      //   task.complete === true
+      //     ? updateTaskStatus(task._id, "false")
+      //     : updateTaskStatus(task._id, "true");
+      // }}
     >
+      {/* <TaskModal
+        isOpen={isOpen}
+        onOpen={onOpen}
+        onClose={onClose}
+        task={task}
+        date={date}
+      /> */}
       <Flex alignItems="center" width="100%" justifyContent="space-between">
         <Badge
           m="0px"
-          p="4px"
+          p="2px"
           border="1px"
-          borderColor="gray.400"
-          color="gray.400"
+          borderColor="#70a1ff"
+          color="#70a1ff"
           colorScheme="white"
+          fontSize="11px"
         >
           <TimeIcon mr="6px" />
-          22.3.21
+          {/* {date} */}
+          11/23/21
         </Badge>
-
-        <Flex alignItems="flex-start" justifyContent="flex-start">
-          <Text fontSize="x-small" mr="10px">
-            Asiigned To
-          </Text>
-          <Badge variant="outline" colorScheme="blue">
-            Anirban Roy
-          </Badge>
-        </Flex>
-        {/* <CloseButton /> */}
       </Flex>
       <Flex flexDirection="column" alignItems="flex-start">
+        {/* {task.complete ? (
+          <Text
+            as="s"
+            fontSize="22px"
+            fontWeight="medium"
+            width="200px"
+            isTruncated
+            color="gray.500"
+            mt="10px"
+            mb="10px"
+          >
+            {task.title}
+          </Text>
+        ) : ( */}
         <Text
-          fontSize="medium"
+          fontSize="22px"
           fontWeight="medium"
-          width="280px"
+          width="200px"
           isTruncated
           color="gray.500"
           mt="10px"
           mb="10px"
         >
-          Task Title
+          {/* {task.title} */}
+          this is a title
         </Text>
+        {/* )} */}
 
-        <Badge
-          m="0px"
-          colorScheme="white"
-          border="1px"
-          borderColor="green.400"
-          color="green.400"
-          p="5px"
+        <Text
+          fontSize="smaller"
+          fontWeight="normal"
+          width="200px"
+          isTruncated
+          color="gray.500"
+          mt="2px"
+          mb="10px"
         >
-          Completed <CheckIcon mb="3px" />
-        </Badge>
+          This is a Description
+        </Text>
       </Flex>
       <Flex
         alignItems="center"
@@ -81,19 +110,38 @@ const RoomTaskCard = () => {
         justifyContent="space-between"
         mt="10px"
       >
-        <Text fontSize="xs" isTruncated color="gray.400" mt="5px">
-          <ViewIcon mb="3px" /> Double Click To Done/Undone
-        </Text>
-        <Button
-          fontSize="xs"
-          size="sm"
-          isTruncated
-          onClick={() => {
-            onOpen();
-          }}
+        {/* {task.complete ? (
+          <Badge
+            m="0px"
+            backgroundColor="#91dc91"
+            borderRadius="6px"
+            fontSize="x-small"
+            variant="solid"
+            p="5px"
+            pt="6px"
+          >
+            Completed <CheckIcon mb="3px" />
+          </Badge>
+        ) : ( */}
+        <Badge
+          m="0px"
+          borderRadius="6px"
+          fontSize="x-small"
+          backgroundColor="#fd9f9f"
+          variant="solid"
+          p="5px"
+          pt="6px"
         >
-          <Text>See Details</Text> <ArrowRightIcon mt="3px" ml="3px" />
-        </Button>
+          incompleted <CloseIcon mb="3px" />
+        </Badge>
+        {/* )} */}
+        <RoomTaskModalDetails />
+      </Flex>
+
+      <Progress colorScheme="blue" size="md" value={20} mt="14px" />
+      <Flex mt="10px" alignItems="center" justifyContent="space-between">
+        <Text mr="4px">Assigned to</Text>
+        <Badge variant="solid">Anirban Roy</Badge>
       </Flex>
     </Box>
   );

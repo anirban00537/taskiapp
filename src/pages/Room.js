@@ -1,23 +1,42 @@
-import { Box, Flex, SimpleGrid } from "@chakra-ui/react";
+import { Box, Flex, Grid, SimpleGrid, Text } from "@chakra-ui/react";
 import RoomTaskCard from "../components/TaskComponents/RoomTaskCard";
-import TaskStats from "../components/TaskStats/TaskStats";
+import TaskStats from "../components/TaskStats/RoomTaskStats";
+import RoomTaskStats from "../components/TaskStats/RoomTaskStats";
 const Room = () => {
   return (
-    <Flex alignItems="center" flexDirection="column" justifyContent="center">
+    <Flex
+      className=""
+      width="100%"
+      flexDirection="column"
+      backgroundColor="gray.100"
+      height="100vh"
+    >
       <TaskStats
-        total={5}
-        // tasks={3}
-        completed={2}
-        incomolete={1}
+      // total={tasks.length}
+      // tasks={tasks}
+      // completed={completed.length}
+      // incomolete={notCompleted.length}
       />
-      <SimpleGrid columns={4} spacing={10}>
-        <RoomTaskCard />
-        <RoomTaskCard />
-        <RoomTaskCard />
-        <RoomTaskCard />
-        <RoomTaskCard />
-        <RoomTaskCard />
-      </SimpleGrid>
+      <Text fontSize="3xl" fontWeight="bold" color="#a9aec4" textAlign="center">
+        BrainBoxBD
+      </Text>
+      <Grid templateColumns="repeat(5, 1fr)">
+        <Flex alignItems="center" justifyContent="center">
+          <RoomTaskCard />
+        </Flex>
+        <Flex alignItems="center" justifyContent="center">
+          <RoomTaskCard />
+        </Flex>
+        <Flex alignItems="center" justifyContent="center">
+          <RoomTaskCard />
+        </Flex>
+        <Flex alignItems="center" justifyContent="center">
+          <RoomTaskCard />
+        </Flex>
+        <Flex alignItems="center" justifyContent="center">
+          <RoomTaskCard />
+        </Flex>
+      </Grid>
     </Flex>
   );
 };

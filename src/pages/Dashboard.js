@@ -15,19 +15,21 @@ import YourBoard from "../components/YourBoard/YourBoard";
 const Dashboard = () => {
   return (
     <Flex
-      justifyContent="center"
+      justifyContent="flex-start"
       alignItems="center"
       w="100%"
       flexDirection="column"
+      backgroundColor="gray.100"
+      height="100vh"
     >
       <Flex flexDirection="column" w="90%" mt="20px">
-        <Text mb="20px" fontSize="32px">
+        <Text mb="10px" color="#a9aec4" fontWeight="bold" fontSize="32px">
           Your Board <CreateBoard />
         </Text>
         <YourBoard />
       </Flex>
       <Flex flexDirection="column" w="90%" mt="20px">
-        <Text mb="20px" fontSize="32px">
+        <Text mb="10px" color="#a9aec4" fontWeight="bold" fontSize="32px">
           Joined Board
         </Text>
         <JoinedBoard />

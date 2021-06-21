@@ -55,8 +55,8 @@ const TaskStats = ({ total, completed, incomolete }) => {
             </Text>
           </Flex>
           {/* <Text fontSize="4xl" mr="5px" fontWeight="medium" color="#70a1ff">
-            {total}
-          </Text> */}
+          {total}
+        </Text> */}
           <Text fontSize="2xl" fontWeight="bold" color="#70a1ff">
             Total Tasks
           </Text>

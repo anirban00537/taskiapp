@@ -16,6 +16,7 @@ import {
   useColorMode,
   Box,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import {
   ChevronDownIcon,
   HamburgerIcon,
@@ -27,8 +28,6 @@ import { useDispatch } from "react-redux";
 import { CalendarIcon } from "@chakra-ui/icons";
 
 const DrawerComponent = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [placement] = useState("left");
   const dispatch = useDispatch();
   const makeUserLogout = () => {
     dispatch(logoutFunction());
@@ -43,23 +42,27 @@ const DrawerComponent = () => {
       borderColor="gray.350"
       justifyContent="space-between"
     >
-      <Flex alignItems="center" justifyContent="center">
-        <HamburgerIcon
-          fontSize="25px"
-          mt="10px"
-          ml="16px"
-          mr="10px"
-          mb="5px"
-          onClick={onOpen}
-        />
-        {/* <Text fontSize="2xl" ml="30px">
-          <CalendarIcon mr="5px" />
-          Taski
-        </Text> */}
+      <Flex alignItems="center" ml="30px" justifyContent="flex-start">
+        <Box fontSize="32px" fontWeight="bold" color="#70a1ff">
+          Taski.
+        </Box>
+      </Flex>
+      <Flex alignItems="center" ml="30px" justifyContent="flex-start">
+        <Box ml="20px" fontWeight="bold" fontSize="19px" color="#70a1ff">
+          <Link to="/">Home</Link>
+        </Box>
+        <Box ml="20px" fontWeight="bold" fontSize="19px" color="#70a1ff">
+          <Link to="/personal">Personal</Link>
+        </Box>
       </Flex>
 
       <Menu>
-        <MenuButton as={Button} mr="20px" rightIcon={<ChevronDownIcon />}>
+        <MenuButton
+          as={Button}
+          mr="20px"
+          backgroundColor="white"
+          rightIcon={<ChevronDownIcon />}
+        >
           Actions
         </MenuButton>
         <MenuList>
@@ -76,18 +79,6 @@ const DrawerComponent = () => {
           </MenuItem>
         </MenuList>
       </Menu>
-
-      <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
-          <DrawerBody>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
     </Flex>
   );
 };

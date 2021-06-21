@@ -21,13 +21,16 @@ const TaskCard = ({ task, date, deleteTask, updateTaskStatus }) => {
   return (
     <Box
       maxW="sm"
-      borderWidth="1px"
-      borderColor="gray.350"
-      borderRadius="lg"
+      borderRadius="10px"
+      backgroundColor="white"
       overflow="hidden"
-      width="340px"
+      width="270px"
       padding="20px"
       mt="20px"
+      borderWidth="1px"
+      borderColor="gray.100"
+      // backgroundColor="gray.50"
+      boxShadow="md"
       onDoubleClick={() => {
         task.complete === true
           ? updateTaskStatus(task._id, "false")
@@ -44,11 +47,12 @@ const TaskCard = ({ task, date, deleteTask, updateTaskStatus }) => {
       <Flex alignItems="center" width="100%" justifyContent="space-between">
         <Badge
           m="0px"
-          p="4px"
+          p="2px"
           border="1px"
-          borderColor="gray.400"
-          color="gray.400"
+          borderColor="#70a1ff"
+          color="#70a1ff"
           colorScheme="white"
+          fontSize="11px"
         >
           <TimeIcon mr="6px" />
           {date}
@@ -64,9 +68,9 @@ const TaskCard = ({ task, date, deleteTask, updateTaskStatus }) => {
         {task.complete ? (
           <Text
             as="s"
-            fontSize="medium"
+            fontSize="22px"
             fontWeight="medium"
-            width="280px"
+            width="200px"
             isTruncated
             color="gray.500"
             mt="10px"
@@ -76,9 +80,9 @@ const TaskCard = ({ task, date, deleteTask, updateTaskStatus }) => {
           </Text>
         ) : (
           <Text
-            fontSize="medium"
+            fontSize="22px"
             fontWeight="medium"
-            width="280px"
+            width="200px"
             isTruncated
             color="gray.500"
             mt="10px"
@@ -88,29 +92,17 @@ const TaskCard = ({ task, date, deleteTask, updateTaskStatus }) => {
           </Text>
         )}
 
-        {task.complete ? (
-          <Badge
-            m="0px"
-            colorScheme="white"
-            border="1px"
-            borderColor="green.400"
-            color="green.400"
-            p="5px"
-          >
-            Completed <CheckIcon mb="3px" />
-          </Badge>
-        ) : (
-          <Badge
-            m="0px"
-            colorScheme="white"
-            borderColor="red.400"
-            border="1px"
-            color="red.400"
-            p="5px"
-          >
-            Not Completed <CloseIcon mb="3px" />
-          </Badge>
-        )}
+        <Text
+          fontSize="smaller"
+          fontWeight="normal"
+          width="200px"
+          isTruncated
+          color="gray.500"
+          mt="2px"
+          mb="10px"
+        >
+          {task.description}
+        </Text>
       </Flex>
       <Flex
         alignItems="center"
@@ -118,9 +110,31 @@ const TaskCard = ({ task, date, deleteTask, updateTaskStatus }) => {
         justifyContent="space-between"
         mt="10px"
       >
-        <Text fontSize="xs" isTruncated color="gray.400" mt="5px">
-          <ViewIcon mb="3px" /> Double Click To Done/Undone
-        </Text>
+        {task.complete ? (
+          <Badge
+            m="0px"
+            backgroundColor="#91dc91"
+            borderRadius="6px"
+            fontSize="x-small"
+            variant="solid"
+            p="5px"
+            pt="6px"
+          >
+            Completed <CheckIcon mb="3px" />
+          </Badge>
+        ) : (
+          <Badge
+            m="0px"
+            borderRadius="6px"
+            fontSize="x-small"
+            backgroundColor="#fd9f9f"
+            variant="solid"
+            p="5px"
+            pt="6px"
+          >
+            incompleted <CloseIcon mb="3px" />
+          </Badge>
+        )}
         <Button
           fontSize="xs"
           size="sm"
@@ -128,6 +142,11 @@ const TaskCard = ({ task, date, deleteTask, updateTaskStatus }) => {
           onClick={() => {
             onOpen();
           }}
+          borderWidth="0px"
+          borderColor="gray.400"
+          color="gray.400"
+          backgroundColor="white"
+          borderRadius="2px"
         >
           <Text>See Details</Text> <ArrowRightIcon mt="3px" ml="3px" />
         </Button>

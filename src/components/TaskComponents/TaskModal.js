@@ -36,7 +36,7 @@ const TaskModal = ({ isOpen, date, onClose, task }) => {
                 width="280px"
                 color="gray.500"
                 mt="10px"
-                mb="10px"
+                mb="5px"
               >
                 {task.title}
               </Text>
@@ -47,12 +47,19 @@ const TaskModal = ({ isOpen, date, onClose, task }) => {
                 width="280px"
                 color="gray.500"
                 mt="10px"
-                mb="10px"
+                mb="5px"
               >
                 {task.title}
               </Text>
             )}
-
+            <Text
+              fontSize="medium"
+              fontWeight="semibold"
+              mb="10px"
+              color="gray.300"
+            >
+              {task.description}
+            </Text>
             {task.complete ? (
               <Badge m="0px" colorScheme="green" p="5px">
                 Completed <CheckIcon mb="3px" />
