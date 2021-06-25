@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   Drawer,
   DrawerBody,
@@ -12,9 +12,20 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
+import { createAndGetBackRoomAction } from "../../state/action/RoomAction";
+import { useDispatch } from "react-redux";
 const CreateBoard = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [roomName, setroomName] = useState("");
+  const dispatch = useDispatch();
   const btnRef = useRef();
+  const createARoom = () => {
+    const roomAdminID = localStorage.getItem("uid");
+
+    dispatch(createAndGetBackRoomAction({ roomName, roomAdminID }));
+    setroomName("");
+  };
+
   return (
     <>
       <Button
@@ -23,7 +34,7 @@ const CreateBoard = () => {
         borderWidth="1px"
         p="20px"
         onClick={onOpen}
-        backgroundColor="#70a1ff"
+        backgroundColor="#a7c5ff"
       >
         <AddIcon fontSize="2xl" color="white" fontWeight="bold" />
       </Button>
@@ -39,14 +50,21 @@ const CreateBoard = () => {
           <DrawerHeader>Create your board</DrawerHeader>
 
           <DrawerBody>
-            <Input placeholder="Type here..." />
+            <Input
+              placeholder="Type here..."
+              onChange={(e) => {
+                setroomName(e.target.value);
+              }}
+            />
           </DrawerBody>
 
           <DrawerFooter>
             <Button variant="outline" mr={3} onClick={onClose}>
               Cancel
             </Button>
-            <Button colorScheme="blue">Save</Button>
+            <Button colorScheme="blue" onClick={createARoom}>
+              Save
+            </Button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

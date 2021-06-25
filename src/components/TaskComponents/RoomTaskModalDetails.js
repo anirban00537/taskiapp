@@ -17,9 +17,10 @@ import {
   SliderFilledTrack,
   SliderThumb,
   Box,
+  Progress,
 } from "@chakra-ui/react";
 
-const RoomTaskModalDetails = () => {
+const RoomTaskModalDetails = ({ show }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -31,7 +32,7 @@ const RoomTaskModalDetails = () => {
         borderWidth="0px"
         borderColor="gray.400"
         color="gray.400"
-        backgroundColor="white"
+        backgroundColor=""
         borderRadius="2px"
       >
         <Text>See Details</Text> <ArrowRightIcon mt="3px" ml="3px" />
@@ -109,7 +110,7 @@ const RoomTaskModalDetails = () => {
                 m="0px"
                 borderRadius="6px"
                 fontSize="x-small"
-                backgroundColor="#fd9f9f"
+                backgroundColor="blue.300"
                 variant="solid"
                 p="5px"
                 pt="6px"
@@ -118,17 +119,33 @@ const RoomTaskModalDetails = () => {
               </Badge>
               {/* )} */}
               <Flex flexDirection="column" width="100%">
-                <Text color="blue.500" fontWeight="semibold" mt="10px">
-                  Set Task Process
-                </Text>
-                <Slider aria-label="slider-ex-4" defaultValue={30}>
-                  <SliderTrack bg="blue.100">
-                    <SliderFilledTrack bg="blue" />
-                  </SliderTrack>
-                  <SliderThumb boxSize={6}>
-                    <Box color="tomato" />
-                  </SliderThumb>
-                </Slider>
+                {show ? (
+                  <>
+                    <Text color="blue.500" fontWeight="semibold" mt="10px">
+                      Set Task Process
+                    </Text>
+                    <Slider aria-label="slider-ex-4" defaultValue={30}>
+                      <SliderTrack bg="blue.100">
+                        <SliderFilledTrack bg="blue" />
+                      </SliderTrack>
+                      <SliderThumb boxSize={6}>
+                        <Box color="tomato" />
+                      </SliderThumb>
+                    </Slider>
+                  </>
+                ) : (
+                  <>
+                    <Text color="blue.500" fontWeight="semibold" mt="10px">
+                      Task Process
+                    </Text>
+                    <Progress
+                      colorScheme="blue"
+                      size="md"
+                      value={20}
+                      mt="14px"
+                    />
+                  </>
+                )}
               </Flex>
               <Flex
                 mt="10px"

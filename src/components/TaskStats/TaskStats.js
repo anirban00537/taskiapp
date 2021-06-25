@@ -6,7 +6,13 @@ import { Flex, Grid, Text } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import {} from "@chakra-ui/icons";
 
-const TaskStats = ({ total, completed, incomolete }) => {
+const TaskStats = ({
+  showCreate,
+  total,
+  completed,
+  incomolete,
+  companyName,
+}) => {
   return (
     <Grid width="100%">
       <Flex
@@ -18,25 +24,30 @@ const TaskStats = ({ total, completed, incomolete }) => {
       >
         <Flex
           width="250px"
-          height="90px"
-          borderRadius="10px"
+          height="130px"
+          borderRadius="0px"
           alignItems="center"
           justifyContent="center"
-          flexDirection="column"
-          backgroundColor="white"
+          boxShadow="md"
+          backgroundColor=""
         >
-          <AddTask />
+          {showCreate ? (
+            <AddTask />
+          ) : (
+            <Text fontSize="22px" fontWeight="bold" color="gray.400">
+              {companyName}
+            </Text>
+          )}
         </Flex>
 
         <Flex
           width="250px"
-          height="90px"
-          borderRadius="10px"
+          height="130px"
+          borderRadius="0px"
           alignItems="center"
           justifyContent="center"
-          borderWidth="1px"
-          borderColor="gray.350"
-          backgroundColor="white"
+          boxShadow="md"
+          backgroundColor=""
         >
           <Flex
             height="50px"
@@ -63,12 +74,12 @@ const TaskStats = ({ total, completed, incomolete }) => {
         </Flex>
         <Flex
           width="250px"
-          height="90px"
-          borderRadius="10px"
+          height="130px"
+          borderRadius="0px"
           alignItems="center"
           justifyContent="center"
-          borderWidth="1px"
-          backgroundColor="white"
+          boxShadow="md"
+          backgroundColor=""
         >
           <Flex
             height="50px"
@@ -93,13 +104,12 @@ const TaskStats = ({ total, completed, incomolete }) => {
         </Flex>
         <Flex
           width="250px"
-          height="90px"
-          borderRadius="10px"
+          height="130px"
+          borderRadius="0px"
           alignItems="center"
           justifyContent="center"
-          borderWidth="1px"
-          borderColor="gray.350"
-          backgroundColor="white"
+          boxShadow="md"
+          backgroundColor=""
         >
           <Flex
             height="50px"

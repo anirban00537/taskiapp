@@ -17,24 +17,30 @@ import {
   CloseIcon,
 } from "@chakra-ui/icons";
 import RoomTaskModalDetails from "./RoomTaskModalDetails";
+import { deleteRoomTaskAction } from "../../state/action/RoomTaskAction";
+import { useDispatch } from "react-redux";
 
-const RoomTaskCard = () => {
+const RoomTaskCard = ({ crossBtn, show, roomTask }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const dispatch = useDispatch();
+  const deleteThisRoomTask = (taskID) => {
+    dispatch(deleteRoomTaskAction(taskID));
+  };
   return (
     <Box
       maxW="sm"
-      borderRadius="10px"
-      backgroundColor="white"
+      borderRadius="1px"
+      backgroundColor="#9e9e9e0a"
       overflow="hidden"
       width="270px"
       padding="20px"
       mt="20px"
-      borderWidth="1px"
-      borderColor="gray.100"
+      // borderWidth="1px"
+      // borderColor="gray.100"
       // backgroundColor="gray.50"
 
       // backgroundColor="gray.50"
-      boxShadow="md"
+      boxShadow="lg"
       // onDoubleClick={() => {
       //   task.complete === true
       //     ? updateTaskStatus(task._id, "false")
@@ -59,12 +65,19 @@ const RoomTaskCard = () => {
           fontSize="11px"
         >
           <TimeIcon mr="6px" />
-          {/* {date} */}
-          11/23/21
+          {roomTask.date}
         </Badge>
+        {crossBtn ? (
+          <CloseButton
+            color="blue.400"
+            onClick={() => {
+              deleteThisRoomTask(roomTask._id);
+            }}
+          />
+        ) : null}
       </Flex>
       <Flex flexDirection="column" alignItems="flex-start">
-        {/* {task.complete ? (
+        {roomTask.complete ? (
           <Text
             as="s"
             fontSize="22px"
@@ -75,22 +88,21 @@ const RoomTaskCard = () => {
             mt="10px"
             mb="10px"
           >
-            {task.title}
+            {roomTask.title}
           </Text>
-        ) : ( */}
-        <Text
-          fontSize="22px"
-          fontWeight="medium"
-          width="200px"
-          isTruncated
-          color="gray.500"
-          mt="10px"
-          mb="10px"
-        >
-          {/* {task.title} */}
-          this is a title
-        </Text>
-        {/* )} */}
+        ) : (
+          <Text
+            fontSize="22px"
+            fontWeight="medium"
+            width="200px"
+            isTruncated
+            color="gray.500"
+            mt="10px"
+            mb="10px"
+          >
+            {roomTask.title}
+          </Text>
+        )}
 
         <Text
           fontSize="smaller"
@@ -101,7 +113,7 @@ const RoomTaskCard = () => {
           mt="2px"
           mb="10px"
         >
-          This is a Description
+          {roomTask.description}
         </Text>
       </Flex>
       <Flex
@@ -110,7 +122,7 @@ const RoomTaskCard = () => {
         justifyContent="space-between"
         mt="10px"
       >
-        {/* {task.complete ? (
+        {roomTask.complete ? (
           <Badge
             m="0px"
             backgroundColor="#91dc91"
@@ -122,26 +134,35 @@ const RoomTaskCard = () => {
           >
             Completed <CheckIcon mb="3px" />
           </Badge>
-        ) : ( */}
-        <Badge
-          m="0px"
-          borderRadius="6px"
-          fontSize="x-small"
-          backgroundColor="#fd9f9f"
-          variant="solid"
-          p="5px"
-          pt="6px"
-        >
-          incompleted <CloseIcon mb="3px" />
-        </Badge>
-        {/* )} */}
-        <RoomTaskModalDetails />
+        ) : (
+          <Badge
+            m="0px"
+            borderRadius="6px"
+            fontSize="x-small"
+            backgroundColor="blue.300"
+            variant="solid"
+            p="5px"
+            pt="6px"
+          >
+            incompleted <CloseIcon mb="3px" />
+          </Badge>
+        )}
+        <RoomTaskModalDetails show={show} />
       </Flex>
+      {roomTask.complete ? (
+        <Progress colorScheme="blue" size="md" value={100} mt="14px" />
+      ) : (
+        <Progress
+          colorScheme="blue"
+          size="md"
+          value={roomTask.progress}
+          mt="14px"
+        />
+      )}
 
-      <Progress colorScheme="blue" size="md" value={20} mt="14px" />
       <Flex mt="10px" alignItems="center" justifyContent="space-between">
         <Text mr="4px">Assigned to</Text>
-        <Badge variant="solid">Anirban Roy</Badge>
+        <Badge variant="solid">{roomTask?.assignedTaskUser.name}</Badge>
       </Flex>
     </Box>
   );

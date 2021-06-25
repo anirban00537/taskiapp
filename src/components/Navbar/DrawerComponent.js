@@ -16,7 +16,7 @@ import {
   useColorMode,
   Box,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   ChevronDownIcon,
   HamburgerIcon,
@@ -28,9 +28,11 @@ import { useDispatch } from "react-redux";
 import { CalendarIcon } from "@chakra-ui/icons";
 
 const DrawerComponent = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const makeUserLogout = () => {
     dispatch(logoutFunction());
+    history.push("/");
   };
   const { colorMode, toggleColorMode } = useColorMode();
 
@@ -39,7 +41,7 @@ const DrawerComponent = () => {
       alignItems="center"
       height="80px"
       borderBottomWidth="1px"
-      borderColor="gray.350"
+      borderColor="black.350"
       justifyContent="space-between"
     >
       <Flex alignItems="center" ml="30px" justifyContent="flex-start">

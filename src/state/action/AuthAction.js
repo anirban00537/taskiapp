@@ -2,6 +2,7 @@ import { setAuthFalse, setAuthTrue } from "../reducers/AuthSlice";
 import { userSigninApi, userSignupApi } from "../Api/AuthApi";
 import { getAndSetTaskAction } from "../action/TaskAction";
 import { setTaskBlank } from "../reducers/TaskSlice";
+import { getAndSetRoomAction } from "./RoomAction";
 export const userSigninAction = (userData) => async (dispatch) => {
   try {
     const { data } = await userSigninApi(userData);
@@ -37,8 +38,10 @@ export const userLoggedinCheck = () => async (dispatch) => {
     const uid = localStorage.getItem("uid");
     if (token && uid) {
       dispatch(setAuthTrue());
-
+      console.log("calling task");
       dispatch(getAndSetTaskAction(uid));
+      console.log("calling rooms");
+      dispatch(getAndSetRoomAction(uid));
     } else {
       dispatch(setAuthFalse());
     }

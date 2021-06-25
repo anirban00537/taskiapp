@@ -113,7 +113,7 @@ const TaskCard = ({ task, date, deleteTask, updateTaskStatus }) => {
         {task.complete ? (
           <Badge
             m="0px"
-            backgroundColor="#91dc91"
+            backgroundColor="blue.300"
             borderRadius="6px"
             fontSize="x-small"
             variant="solid"
@@ -127,7 +127,7 @@ const TaskCard = ({ task, date, deleteTask, updateTaskStatus }) => {
             m="0px"
             borderRadius="6px"
             fontSize="x-small"
-            backgroundColor="#fd9f9f"
+            backgroundColor="blue.300"
             variant="solid"
             p="5px"
             pt="6px"

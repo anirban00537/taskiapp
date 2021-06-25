@@ -9,75 +9,41 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarBadge, AvatarGroup } from "@chakra-ui/react";
-const YourBoard = () => {
+import { useState } from "react";
+const YourBoard = ({ rooms }) => {
   return (
     <Grid templateColumns="repeat(5, 1fr)" w="100%">
-      <Box
-        p="10px"
-        mt="5"
-        borderRadius="5px"
-        w="90%"
-        borderWidth="1px"
-        backgroundColor="white"
-      >
-        <Flex
-          alignItems="center"
-          justifyContent="space-around"
-          m="10px"
-          flexDirection="row"
-        >
-          <Avatar name="Nello" backgroundColor="#a7c5ff" color="white" />
-          <Box>
-            <Text fontWeight="bold" fontSize="large" color="gray.600" mt="5px">
-              BrainboxBD
+      {rooms.map((room) => (
+        <Link to={`/your/room/${room._id}`}>
+          <Flex
+            backgroundColor=""
+            p="10px"
+            mt="5"
+            borderRadius="5px"
+            w="90%"
+            borderWidth="1px"
+            alignItems="center"
+            justifyContent="flex-start"
+            m="10px"
+            flexDirection="row"
+          >
+            <Avatar
+              name={room.roomName}
+              backgroundColor="#a7c5ff"
+              color="white"
+            />
+            <Text
+              fontWeight="bold"
+              fontSize="large"
+              color="gray"
+              mt="5px"
+              ml="10px"
+            >
+              {room.roomName}
             </Text>
-          </Box>
-        </Flex>
-      </Box>
-      <Box
-        p="10px"
-        mt="5"
-        borderRadius="5px"
-        w="90%"
-        borderWidth="1px"
-        backgroundColor="white"
-      >
-        <Flex
-          alignItems="center"
-          justifyContent="space-around"
-          m="10px"
-          flexDirection="row"
-        >
-          <Avatar name="DimChai" backgroundColor="#a7c5ff" color="white" />
-          <Box>
-            <Text fontWeight="bold" fontSize="large" color="gray.600" mt="5px">
-              DimChai
-            </Text>
-          </Box>
-        </Flex>
-      </Box>
-      <Box
-        p="10px"
-        mt="5"
-        borderRadius="5px"
-        w="90%"
-        borderWidth="1px"
-        backgroundColor="white"
-      >
-        <Flex
-          alignItems="center"
-          justifyContent="space-around"
-          m="10px"
-          flexDirection="row"
-        >
-          <Avatar name="Rafello" backgroundColor="#a7c5ff" color="white" />
-          <Box>
-            <Text fontWeight="bold" fontSize="large" color="gray.600" mt="5px">
-              <Link to="/room">Rafello</Link>
-            </Text>
-          </Box>
-        </Flex>
-      </Box>
+          </Flex>
+        </Link>
+      ))}
     </Grid>
   );
 };

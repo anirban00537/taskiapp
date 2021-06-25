@@ -10,6 +10,7 @@ import DrawerComponent from "./components/Navbar/DrawerComponent";
 import { Button, Flex, useColorMode } from "@chakra-ui/react";
 import Dashboard from "./pages/Dashboard";
 import Room from "./pages/Room";
+import YourRoom from "./pages/YourRoom";
 function App() {
   const dispatch = useDispatch();
 
@@ -31,6 +32,7 @@ function AuthRouters() {
         <Route exact path="/" component={Dashboard} />
         <Route exact path="/personal" component={TasksHome} />
         <Route exact path="/room" component={Room} />
+        <Route exact path="/your/room/:id" component={YourRoom} />
       </Switch>
     </Flex>
   );

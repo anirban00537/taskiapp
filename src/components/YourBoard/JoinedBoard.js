@@ -1,52 +1,59 @@
 import { Badge, Box, Flex, Grid, Text } from "@chakra-ui/react";
 import { Avatar } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 const JoinedBoard = () => {
   return (
     <Grid templateColumns="repeat(5, 1fr)" w="100%">
-      <Box
-        backgroundColor="white"
-        p="10px"
-        mt="5"
-        borderRadius="5px"
-        w="90%"
-        borderWidth="1px"
-      >
+      <Link to="/room">
         <Flex
+          backgroundColor=""
+          p="10px"
+          mt="5"
+          borderRadius="5px"
+          w="90%"
+          borderWidth="1px"
           alignItems="center"
-          justifyContent="space-around"
+          justifyContent="flex-start"
           m="10px"
           flexDirection="row"
         >
           <Avatar name="DimChai" backgroundColor="#a7c5ff" color="white" />
-          <Box>
-            <Text fontWeight="bold" fontSize="large" color="gray.600" mt="5px">
-              DimChai
-            </Text>
-          </Box>
+          <Text
+            fontWeight="bold"
+            fontSize="large"
+            color="gray"
+            mt="5px"
+            ml="10px"
+          >
+            DimChai
+          </Text>
         </Flex>
-      </Box>
-      <Box
-        backgroundColor="white"
-        p="10px"
-        mt="5"
-        borderRadius="5px"
-        w="90%"
-        borderWidth="1px"
-      >
+      </Link>
+      <Link to="/room">
         <Flex
+          backgroundColor=""
+          p="10px"
+          mt="5"
+          borderRadius="5px"
+          w="90%"
+          borderWidth="1px"
           alignItems="center"
-          justifyContent="space-around"
+          justifyContent="flex-start"
           m="10px"
           flexDirection="row"
         >
-          <Avatar name="DimChai" backgroundColor="#a7c5ff" color="white" />
-          <Box>
-            <Text fontWeight="bold" fontSize="large" color="gray.600" mt="5px">
-              DimChai
-            </Text>
-          </Box>
+          <Avatar name="RawCha" backgroundColor="#a7c5ff" color="white" />
+          <Text
+            fontWeight="bold"
+            fontSize="large"
+            color="gray"
+            mt="5px"
+            ml="10px"
+          >
+            RawCha
+          </Text>
         </Flex>
-      </Box>
+      </Link>
     </Grid>
   );
 };

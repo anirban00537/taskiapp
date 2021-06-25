@@ -14,6 +14,7 @@ const TasksHome = () => {
   const dispatch = useDispatch();
   const { tasks } = useSelector((state) => state.tasks);
   // const completed = task.nap(task);
+  console.log(tasks, "taski");
   const completed = tasks.filter((task) => task.complete == true);
   const notCompleted = tasks.filter((task) => task.complete == false);
   const deleteTask = (id) => {
@@ -32,7 +33,7 @@ const TasksHome = () => {
       className=""
       width="100%"
       flexDirection="column"
-      backgroundColor="gray.100"
+      backgroundColor="white"
       height="100vh"
     >
       <TaskStats
@@ -40,6 +41,7 @@ const TasksHome = () => {
         tasks={tasks}
         completed={completed.length}
         incomolete={notCompleted.length}
+        showCreate={true}
       />
       <Text fontSize="3xl" fontWeight="bold" color="#a9aec4" textAlign="center">
         Yous All Tasks
