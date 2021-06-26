@@ -2,8 +2,6 @@ import { getRooms, addRoom } from "../reducers/RoomSlice.js";
 import { getAllRoomsByAdminID, createAndGetBackRoom } from "../Api/Room.js";
 
 export const getAndSetRoomAction = (uid) => async (dispatch) => {
-  // const userID = localStorage.getItem("uid");
-
   try {
     const { data } = await getAllRoomsByAdminID(uid);
     dispatch(getRooms(data));

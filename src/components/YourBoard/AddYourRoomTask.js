@@ -79,8 +79,8 @@ const AddYourRoomTask = ({ members, roomId, adminUid }) => {
                 }}
               >
                 {members?.map((member) => (
-                  <option value={member.userID._id}>
-                    {member.userID.name}
+                  <option value={member.userID?._id}>
+                    {member.userID?.name}
                   </option>
                 ))}
               </Select>

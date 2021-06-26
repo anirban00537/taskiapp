@@ -10,13 +10,31 @@ import {
 } from "@chakra-ui/modal";
 import { AddIcon } from "@chakra-ui/icons";
 import { FormLabel } from "@chakra-ui/form-control";
-import { Input, Textarea } from "@chakra-ui/react";
+import { Flex, Input, Text, Textarea } from "@chakra-ui/react";
 
 import { Button, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
-const SearchMember = () => {
+import { searchMember } from "../../state/Api/User";
+import { updateRoomMemberApi } from "../../state/Api/Room";
+import { useDispatch } from "react-redux";
+import { updateRoom } from "../../state/reducers/RoomSlice";
+const SearchMember = ({ roomID }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [Email, setEmail] = useState("");
+  const [members, setmembers] = useState([]);
+  const SearchMembers = async () => {
+    const { data } = await searchMember(Email);
+    console.log(data, "member");
+    setmembers(data);
+  };
+  const dispatch = useDispatch();
+  const updateMemberData = async (userID) => {
+    const { data } = await updateRoomMemberApi(roomID, {
+      userID,
+    });
+
+    dispatch(updateRoom(data[0]));
+  };
   return (
     <>
       <Button
@@ -33,21 +51,54 @@ const SearchMember = () => {
         <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader borderBottomWidth="1px">
-            Search Room Member
+            Search to add members
           </DrawerHeader>
 
           <DrawerBody>
-            <Stack spacing="24px">
-              <Box>
-                <FormLabel htmlFor="username">Task</FormLabel>
+            <Stack spacing="4px">
+              <Flex>
                 <Input
                   value={Email}
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
-                  placeholder="Please enter your task"
+                  placeholder="Please enter members email"
                 />
-              </Box>
+                <Button onClick={SearchMembers}>Search</Button>
+              </Flex>
+              {members.length === 0 ? (
+                ""
+              ) : (
+                <Flex width="100%" flexDirection="column">
+                  <Text color="gray.400" fontSize="10px" mt="20px">
+                    Search Results
+                  </Text>
+                  {members.map((member) => (
+                    <Flex
+                      justifyContent="space-around"
+                      width="100%"
+                      alignItems="center"
+                      borderWidth="1px"
+                      p="10px"
+                      mt="5px"
+                      mb="5px"
+                    >
+                      <Text width="180px" isTruncated>
+                        {member.email}
+                      </Text>
+                      <Button
+                        colorScheme="blue"
+                        height="30px"
+                        onClick={() => {
+                          updateMemberData(member._id);
+                        }}
+                      >
+                        Add
+                      </Button>
+                    </Flex>
+                  ))}
+                </Flex>
+              )}
             </Stack>
           </DrawerBody>
 
@@ -55,12 +106,7 @@ const SearchMember = () => {
             <Button variant="outline" mr={3} onClick={onClose}>
               Cancel
             </Button>
-            <Button
-              colorScheme="blue"
-              onClick={() => {
-                // submitTask;
-              }}
-            >
+            <Button colorScheme="blue" onClick={() => {}}>
               add
             </Button>
           </DrawerFooter>

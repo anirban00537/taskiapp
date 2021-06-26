@@ -22,13 +22,12 @@ const TaskCard = ({ task, date, deleteTask, updateTaskStatus }) => {
     <Box
       maxW="sm"
       borderRadius="10px"
-      backgroundColor="white"
+      backgroundColor=""
       overflow="hidden"
       width="270px"
       padding="20px"
       mt="20px"
       borderWidth="1px"
-      borderColor="gray.100"
       // backgroundColor="gray.50"
       boxShadow="md"
       onDoubleClick={() => {
@@ -145,7 +144,7 @@ const TaskCard = ({ task, date, deleteTask, updateTaskStatus }) => {
           borderWidth="0px"
           borderColor="gray.400"
           color="gray.400"
-          backgroundColor="white"
+          backgroundColor=""
           borderRadius="2px"
         >
           <Text>See Details</Text> <ArrowRightIcon mt="3px" ml="3px" />

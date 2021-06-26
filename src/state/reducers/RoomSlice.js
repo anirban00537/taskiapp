@@ -11,8 +11,12 @@ export const RoomSlice = createSlice({
     addRoom: (state, { payload }) => {
       state.rooms.push(payload);
     },
+    updateRoom: (state, { payload }) => {
+      const index = state.rooms.findIndex((room) => room._id === payload._id);
+      state.rooms[index].roomMembers = payload.roomMembers;
+    },
   },
 });
 
-export const { getRooms, addRoom } = RoomSlice.actions;
+export const { getRooms, addRoom, updateRoom } = RoomSlice.actions;
 export default RoomSlice.reducer;

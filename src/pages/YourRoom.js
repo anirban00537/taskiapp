@@ -1,4 +1,4 @@
-import { Badge, Flex, Grid, Text } from "@chakra-ui/react";
+import { Badge, Flex, Grid, Image, Text } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -7,8 +7,7 @@ import TaskStats from "../components/TaskStats/TaskStats";
 import AddYourRoomTask from "../components/YourBoard/AddYourRoomTask";
 import SearchMember from "../components/YourBoard/SearchMember";
 import ViewMembers from "../components/YourBoard/ViewMembers";
-import { getAndSetRoomAction } from "../state/action/RoomAction";
-
+import empty from "./empty.png";
 import { getAndSetRoomTaskAction } from "../state/action/RoomTaskAction";
 
 const YourRoom = () => {
@@ -26,7 +25,7 @@ const YourRoom = () => {
     dispatch(getAndSetRoomTaskAction(Adminid, id));
   }, [id]);
   return (
-    <Flex width="100%" flexDirection="column" backgroundColor="white">
+    <Flex width="100%" flexDirection="column" backgroundColor="">
       <TaskStats
         showCreate={false}
         companyName={room?.roomName}
@@ -46,7 +45,7 @@ const YourRoom = () => {
           color="blue.400"
         >
           Total Room Members {room?.roomMembers.length}
-          <ViewMembers members={room?.roomMembers} />
+          <ViewMembers members={room?.roomMembers} roomID={id} />
         </Badge>
 
         <Text
@@ -64,17 +63,35 @@ const YourRoom = () => {
             roomId={id}
             adminUid={Adminid}
           />
-          <SearchMember />
+          <SearchMember roomID={id} />
         </Flex>
       </Flex>
-
-      <Grid templateColumns="repeat(5, 1fr)">
-        {roomTasks.map((roomTask) => (
-          <Flex alignItems="center" justifyContent="center">
-            <RoomTaskCard crossBtn={true} roomTask={roomTask} show={false} />
-          </Flex>
-        ))}
-      </Grid>
+      {roomTasks.length === 0 ? (
+        <Flex
+          alignItems="center"
+          justifyContent="center"
+          height="400px"
+          flexDirection="column"
+        >
+          <Image
+            borderRadius="full"
+            boxSize="300px"
+            src={empty}
+            alt="Segun Adebayo"
+          />
+          <Text fontSize="3xl" fontWeight="bold" color="gray.400">
+            No Task Avaialable
+          </Text>
+        </Flex>
+      ) : (
+        <Grid templateColumns="repeat(5, 1fr)">
+          {roomTasks.map((roomTask) => (
+            <Flex alignItems="center" justifyContent="center">
+              <RoomTaskCard crossBtn={true} roomTask={roomTask} show={false} />
+            </Flex>
+          ))}
+        </Grid>
+      )}
     </Flex>
   );
 };

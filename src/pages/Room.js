@@ -16,21 +16,9 @@ const Room = () => {
         BrainBoxBD
       </Text>
       <Grid templateColumns="repeat(5, 1fr)">
-        <Flex alignItems="center" justifyContent="center">
+        {/* <Flex alignItems="center" justifyContent="center">
           <RoomTaskCard crossBtn={false} />
-        </Flex>
-        <Flex alignItems="center" justifyContent="center">
-          <RoomTaskCard crossBtn={false} />
-        </Flex>
-        <Flex alignItems="center" justifyContent="center">
-          <RoomTaskCard crossBtn={false} />
-        </Flex>
-        <Flex alignItems="center" justifyContent="center">
-          <RoomTaskCard crossBtn={false} />
-        </Flex>
-        <Flex alignItems="center" justifyContent="center">
-          <RoomTaskCard crossBtn={false} />
-        </Flex>
+        </Flex> */}
       </Grid>
     </Flex>
   );

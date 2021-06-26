@@ -9,7 +9,6 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarBadge, AvatarGroup } from "@chakra-ui/react";
-import { useState } from "react";
 const YourBoard = ({ rooms }) => {
   return (
     <Grid templateColumns="repeat(5, 1fr)" w="100%">

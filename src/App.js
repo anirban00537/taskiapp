@@ -31,7 +31,7 @@ function AuthRouters() {
       <Switch>
         <Route exact path="/" component={Dashboard} />
         <Route exact path="/personal" component={TasksHome} />
-        <Route exact path="/room" component={Room} />
+        <Route exact path="/room/:id" component={Room} />
         <Route exact path="/your/room/:id" component={YourRoom} />
       </Switch>
     </Flex>
