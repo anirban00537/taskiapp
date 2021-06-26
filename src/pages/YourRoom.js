@@ -13,7 +13,6 @@ import { getAndSetRoomTaskAction } from "../state/action/RoomTaskAction";
 const YourRoom = () => {
   const { id } = useParams();
   const { rooms } = useSelector((state) => state.room);
-
   const roomTasks = useSelector((state) => state.roomTasks.roomTasks);
   console.log(roomTasks, "roomTaskkAll");
   const room = rooms.find((room) => room._id === id);
