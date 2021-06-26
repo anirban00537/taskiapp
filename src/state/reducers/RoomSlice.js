@@ -15,8 +15,12 @@ export const RoomSlice = createSlice({
       const index = state.rooms.findIndex((room) => room._id === payload._id);
       state.rooms[index].roomMembers = payload.roomMembers;
     },
+    deleteRoom: (state, { payload }) => {
+      const newState = state.rooms.filter((room) => payload !== room._id)
+      state.rooms = newState;
+    }
   },
 });
 
-export const { getRooms, addRoom, updateRoom } = RoomSlice.actions;
+export const { getRooms, addRoom, updateRoom, deleteRoom } = RoomSlice.actions;
 export default RoomSlice.reducer;

@@ -2,7 +2,9 @@ import "./Auth.css";
 import { Box, Button, Flex, Input, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 const Signup = () => {
+  const history = useHistory();
   const [name, setname] = useState();
   const [email, setemail] = useState();
   const [password, setpassword] = useState();
@@ -16,7 +18,8 @@ const Signup = () => {
     });
     console.log(data);
     if (data.message) {
-      setmsg(data);
+      setmsg(data.message);
+      history.push("/")
     } else {
       setmsg(data.error);
     }
@@ -54,6 +57,7 @@ const Signup = () => {
           variant="filled"
           width="300px"
           m="10px"
+          type="password"
           placeholder="Password"
           onChange={(e) => {
             setpassword(e.target.value);
