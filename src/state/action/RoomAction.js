@@ -1,5 +1,5 @@
-import { getRooms, addRoom } from "../reducers/RoomSlice.js";
-import { getAllRoomsByAdminID, createAndGetBackRoom } from "../Api/Room.js";
+import { getRooms, addRoom, deleteRoom } from "../reducers/RoomSlice.js";
+import { getAllRoomsByAdminID, createAndGetBackRoom, deleteRoomAndGetBackID } from "../Api/Room.js";
 
 export const getAndSetRoomAction = (uid) => async (dispatch) => {
   try {
@@ -18,3 +18,12 @@ export const createAndGetBackRoomAction = (roomData) => async (dispatch) => {
     console.error(error);
   }
 };
+
+export const deleteRoomAction = (id) => async (dispatch) => {
+  try {
+    const { data } = await deleteRoomAndGetBackID(id);
+    dispatch(deleteRoom(data));
+  } catch (error) {
+    console.error(error);
+  }
+}
