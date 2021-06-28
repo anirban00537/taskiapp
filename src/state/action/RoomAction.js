@@ -1,5 +1,10 @@
 import { getRooms, addRoom, deleteRoom } from "../reducers/RoomSlice.js";
-import { getAllRoomsByAdminID, createAndGetBackRoom, deleteRoomAndGetBackID } from "../Api/Room.js";
+import {
+  getAllRoomsByAdminID,
+  createAndGetBackRoom,
+  deleteRoomAndGetBackID,
+} from "../Api/Room.js";
+import { ToastAlert } from "../../components/Toasts/Toasts.js";
 
 export const getAndSetRoomAction = (uid) => async (dispatch) => {
   try {
@@ -13,6 +18,7 @@ export const getAndSetRoomAction = (uid) => async (dispatch) => {
 export const createAndGetBackRoomAction = (roomData) => async (dispatch) => {
   try {
     const { data } = await createAndGetBackRoom(roomData);
+
     dispatch(addRoom(data));
   } catch (error) {
     console.error(error);
@@ -26,4 +32,4 @@ export const deleteRoomAction = (id) => async (dispatch) => {
   } catch (error) {
     console.error(error);
   }
-}
+};

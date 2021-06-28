@@ -5,7 +5,7 @@ import {
   CloseButton,
   Flex,
   Grid,
-  IconButton,
+  useToast,
   Text,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
@@ -13,10 +13,11 @@ import { Avatar, AvatarBadge, AvatarGroup } from "@chakra-ui/react";
 import { useState } from "react";
 import { deleteRoomAction } from "../../state/action/RoomAction";
 import { useDispatch } from "react-redux";
+
 const YourBoard = ({ rooms }) => {
   const dispatch = useDispatch();
   const [dltBtn, setDltBtn] = useState(null);
-
+  const toast = useToast();
   const handleOver = (id) => {
     setDltBtn(id);
   };
@@ -25,57 +26,64 @@ const YourBoard = ({ rooms }) => {
     setDltBtn(false);
   };
   return (
-    <Grid templateColumns="repeat(5, 1fr)" w="100%">
+    <Grid templateColumns="repeat(1, 1fr)" w="100%" justifyContent="center">
       {rooms.map((room) => (
         <Box
           onMouseOver={() => handleOver(room._id)}
           onMouseLeave={() => handleLeave(room._id)}
         >
           <Flex
-            flexDirection="column"
+            flexDirection="row"
             p="10px"
             mt="5"
             borderRadius="5px"
-            w="60%"
+            w="90%"
             alignItems="center"
-            justifyContent="space-between"
+            justifyContent="flex-start"
             m="10px"
-            backgroundColor="gray.700"
+            backgroundColor="#1c2635"
           >
             <Link to={`/your/room/${room._id}`}>
               <Box
                 display="flex"
-                flexDirection="column"
+                flexDirection=""
                 alignItems="center"
                 alignItems="center"
-                height="120px"
                 w="100%"
                 p="10px"
               >
                 <Avatar name={room.roomName} backgroundColor="blue.500" />
-                <Text
-                  fontWeight="bold"
-                  fontSize="large"
-                  color="gray.400"
-                  mt="5px"
-                >
-                  {room.roomName}
-                </Text>
-                <Badge
-                  fontSize="11px"
-                  variant="outline"
-                  backgroundcolor="gray.300"
-                  color="gray.300"
-                  mt="10px"
-                >
-                  Total Members {room.roomMembers.length}
-                </Badge>
+                <Flex flexDirection="column">
+                  <Text
+                    fontWeight="bold"
+                    fontSize="large"
+                    color="gray.400"
+                    mt="5px"
+                    ml="10px"
+                  >
+                    {room.roomName}
+                  </Text>
+                  <Text color="gray.500" ml="10px">
+                    Total Room Members {room.roomMembers.length}
+                  </Text>
+                </Flex>
               </Box>
             </Link>
             <Box>
               <CloseButton
                 display={dltBtn === room._id ? "block" : "none"}
-                onClick={() => dispatch(deleteRoomAction(room._id))}
+                onClick={() =>
+                  dispatch(deleteRoomAction(room._id)).then(() => {
+                    toast({
+                      title: "Room hasbeen deleted",
+                      description:
+                        "All information in the room has been deleted",
+                      status: "error",
+                      duration: 6000,
+                      isClosable: true,
+                    });
+                  })
+                }
                 color="gray.400"
               />
             </Box>

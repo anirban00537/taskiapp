@@ -18,11 +18,11 @@ const JoinedBoard = () => {
   }, []);
 
   return (
-    <Grid templateColumns="repeat(5, 1fr)" w="100%">
+    <Grid templateColumns="repeat(3, 1fr)" w="100%">
       {Rooms.map((room) => (
         <Link to={`/room/${room._id}`}>
           <Flex
-            backgroundColor="gray.700"
+            backgroundColor="#1c2635"
             p="10px"
             mt="5"
             borderRadius="5px"

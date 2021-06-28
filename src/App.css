@@ -1,3 +1,6 @@
 .AuthRoutersclass {
   display: flex;
 }
+.bgClr {
+  background-color: "#1c2635" !important;
+}

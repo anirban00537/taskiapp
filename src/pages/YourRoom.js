@@ -38,15 +38,6 @@ const YourRoom = () => {
         completed={completed?.length}
         incomolete={notCompleted?.length}
       />
-      {/* <Grid templateColumns="repeat(2, 1fr)">
-        <TaskStatistic
-          showCreate={false}
-          companyName={room?.roomName}
-          total={roomTasks?.length}
-          completed={completed?.length}
-          incomolete={notCompleted?.length}
-        />
-      </Grid> */}
 
       <Flex alignItems="center" justifyContent="space-between">
         <Badge
@@ -91,7 +82,9 @@ const YourRoom = () => {
           <Image
             borderRadius="full"
             boxSize="300px"
-            src={empty}
+            src={
+              "https://static.wixstatic.com/media/4624b2_3b47caac59ae4597bf12e2630eaa3ebe~mv2.gif"
+            }
             alt="Segun Adebayo"
           />
           <Text fontSize="3xl" fontWeight="bold" color="gray.400">

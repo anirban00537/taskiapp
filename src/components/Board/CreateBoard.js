@@ -9,6 +9,7 @@ import {
   DrawerCloseButton,
   useDisclosure,
   Button,
+  useToast,
   Input,
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
@@ -19,10 +20,18 @@ const CreateBoard = () => {
   const [roomName, setroomName] = useState("");
   const dispatch = useDispatch();
   const btnRef = useRef();
+  const toast = useToast();
   const createARoom = () => {
     const roomAdminID = localStorage.getItem("uid");
-
-    dispatch(createAndGetBackRoomAction({ roomName, roomAdminID }));
+    dispatch(createAndGetBackRoomAction({ roomName, roomAdminID })).then(() => {
+      toast({
+        title: "Account created.",
+        description: "We've created your account for you.",
+        status: "success",
+        duration: 6000,
+        isClosable: true,
+      });
+    });
     setroomName("");
   };
 
@@ -31,10 +40,9 @@ const CreateBoard = () => {
       <Button
         ref={btnRef}
         ml="10px"
-        borderWidth="1px"
         p="20px"
         onClick={onOpen}
-        backgroundColor="gray.700"
+        backgroundColor="#1c2635"
         color="gray.300"
         borderColor="gray.600"
         width="50px"
