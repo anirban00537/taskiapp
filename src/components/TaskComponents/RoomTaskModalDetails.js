@@ -1,4 +1,11 @@
-import { ArrowRightIcon, CloseIcon, TimeIcon } from "@chakra-ui/icons";
+import {
+  ArrowRightIcon,
+  CheckIcon,
+  CloseIcon,
+  TimeIcon,
+} from "@chakra-ui/icons";
+import { useDispatch } from "react-redux";
+
 import {
   Modal,
   ModalOverlay,
@@ -19,9 +26,17 @@ import {
   Box,
   Progress,
 } from "@chakra-ui/react";
+import moment from "moment";
+import { updateJoinedRoomTaskAction } from "../../state/action/JoinedRoomTaskAction";
 
-const RoomTaskModalDetails = ({ show }) => {
+const RoomTaskModalDetails = ({ show, roomTask }) => {
+  console.log("roomTask", roomTask);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const dispatch = useDispatch();
+
+  const updateJoinedRoomTask = (taskID, complete, progress) => {
+    dispatch(updateJoinedRoomTaskAction(taskID, complete, progress));
+  };
   return (
     <>
       <Button
@@ -32,7 +47,7 @@ const RoomTaskModalDetails = ({ show }) => {
         borderWidth="0px"
         borderColor="gray.400"
         color="gray.400"
-        backgroundColor=""
+        backgroundColor="gray.800"
         borderRadius="2px"
       >
         <Text>See Details</Text> <ArrowRightIcon mt="3px" ml="3px" />
@@ -45,103 +60,142 @@ const RoomTaskModalDetails = ({ show }) => {
         motionPreset="slideInBottom"
       >
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Task Title</ModalHeader>
+        <ModalContent backgroundColor="gray.800" color="white">
+          <ModalHeader>Task Details</ModalHeader>
           <ModalCloseButton />
           <ModalBody width="100%">
             <Flex flexDirection="column" alignItems="flex-start" width="100%">
-              <Badge
+              {roomTask.complete ? (
+                <Badge
+                  m="0px"
+                  backgroundColor="#2ecc71"
+                  borderRadius="6px"
+                  fontSize="x-small"
+                  variant="solid"
+                  p="5px"
+                  pt="6px"
+                >
+                  Completed <CheckIcon mb="3px" />
+                </Badge>
+              ) : (
+                <Badge
+                  m="0px"
+                  borderRadius="6px"
+                  fontSize="x-small"
+                  backgroundColor="red.300"
+                  variant="solid"
+                  p="5px"
+                  pt="6px"
+                >
+                  incompleted <CloseIcon mb="3px" />
+                </Badge>
+              )}
+              <Flex
                 m="0px"
                 p="2px"
                 border="1px"
-                borderColor="#70a1ff"
                 color="#70a1ff"
-                colorScheme="white"
                 fontSize="11px"
-              >
-                <TimeIcon mr="6px" />
-                {/* {date} */}
-                11/23/21
-              </Badge>
-              {/* {task.complete ? (
-          <Text
-            as="s"
-            fontSize="22px"
-            fontWeight="medium"
-            width="200px"
-            isTruncated
-            color="gray.500"
-            mt="10px"
-            mb="10px"
-          >
-            {task.title}
-          </Text>
-        ) : ( */}
-              <Text
-                fontSize="22px"
-                fontWeight="medium"
-                width="200px"
-                isTruncated
-                color="gray.500"
+                alignItems="center"
+                justifyContent="center"
                 mt="10px"
-                mb="10px"
               >
-                {/* {task.title} */}
-                this is a title
-              </Text>
-              {/* )} */}
+                <TimeIcon ml="6px" mr="6px" />
+                Deadline
+                {moment(roomTask.date, "YYYYMMDD").fromNow()}
+              </Flex>
+              {roomTask.complete ? (
+                <Text
+                  as="s"
+                  fontSize="22px"
+                  fontWeight="medium"
+                  width="100%"
+                  color="gray.300"
+                  mt="10px"
+                  mb="10px"
+                >
+                  {roomTask.title}
+                </Text>
+              ) : (
+                <Text
+                  fontSize="22px"
+                  fontWeight="medium"
+                  width="100%"
+                  color="gray.300"
+                  mt="10px"
+                  mb="10px"
+                >
+                  {roomTask.title}
+                  this is a title
+                </Text>
+              )}
               <Text fontSize="14px" mb="10px">
-                This is a description and an gobal vendor is used by ami
+                {roomTask.description}
               </Text>
-              {/* {task.complete ? (
-          <Badge
-            m="0px"
-            backgroundColor="#91dc91"
-            borderRadius="6px"
-            fontSize="x-small"
-            variant="solid"
-            p="5px"
-            pt="6px"
-          >
-            Completed <CheckIcon mb="3px" />
-          </Badge>
-        ) : ( */}
-              <Badge
-                m="0px"
-                borderRadius="6px"
-                fontSize="x-small"
-                backgroundColor="blue.300"
-                variant="solid"
-                p="5px"
-                pt="6px"
-              >
-                incompleted <CloseIcon mb="3px" />
-              </Badge>
-              {/* )} */}
+
               <Flex flexDirection="column" width="100%">
                 {show ? (
                   <>
-                    <Text color="blue.500" fontWeight="semibold" mt="10px">
-                      Set Task Process
+                    <Text color="gray.300" fontWeight="semibold" mt="10px">
+                      Set Task Progress
                     </Text>
-                    <Slider aria-label="slider-ex-4" defaultValue={30}>
-                      <SliderTrack bg="blue.100">
-                        <SliderFilledTrack bg="blue" />
-                      </SliderTrack>
-                      <SliderThumb boxSize={6}>
-                        <Box color="tomato" />
-                      </SliderThumb>
-                    </Slider>
+
+                    {roomTask.complete ? (
+                      <>
+                        <Text color="gray.500" mb="0px">
+                          {roomTask.progress}%
+                        </Text>
+                        <Slider
+                          aria-label="slider-ex-4"
+                          defaultValue={roomTask.progress}
+                          onChangeEnd={(val) => {
+                            console.log("value type");
+                            updateJoinedRoomTask(roomTask._id, null, val);
+                          }}
+                          isDisabled
+                        >
+                          <SliderTrack bg="blue.100">
+                            <SliderFilledTrack bg="blue" />
+                          </SliderTrack>
+                          <SliderThumb boxSize={6}>
+                            <Box color="tomato" />
+                          </SliderThumb>
+                        </Slider>
+                      </>
+                    ) : (
+                      <>
+                        <Text color="gray.500" mb="0px">
+                          {roomTask.progress}%
+                        </Text>
+                        <Slider
+                          aria-label="slider-ex-4"
+                          defaultValue={roomTask.progress}
+                          onChangeEnd={(val) => {
+                            updateJoinedRoomTask(roomTask._id, null, val);
+                            if (val === 100) {
+                              updateJoinedRoomTask(roomTask._id, true, null);
+                            }
+                          }}
+                        >
+                          <SliderTrack bg="blue.100">
+                            <SliderFilledTrack bg="blue" />
+                          </SliderTrack>
+                          <SliderThumb boxSize={6}>
+                            <Box color="tomato" />
+                          </SliderThumb>
+                        </Slider>
+                      </>
+                    )}
                   </>
                 ) : (
                   <>
-                    <Text color="blue.500" fontWeight="semibold" mt="10px">
+                    <Text color="gray.300" fontWeight="semibold" mt="10px">
                       Task Process
                     </Text>
                     <Progress
-                      colorScheme="blue"
+                      colorScheme="green"
                       size="md"
-                      value={20}
+                      value={roomTask.progress}
                       mt="14px"
                     />
                   </>
@@ -154,14 +208,11 @@ const RoomTaskModalDetails = ({ show }) => {
                 width="100%"
               >
                 <Text mr="4px">Assigned to</Text>
-                <Badge variant="solid">Anirban Roy</Badge>
+                <Badge variant="solid">{roomTask?.assignedTaskUser.name}</Badge>
               </Flex>
             </Flex>
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="blue" mr={3}>
-              Save
-            </Button>
             <Button variant="ghost" onClick={onClose}>
               Close
             </Button>

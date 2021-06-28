@@ -22,25 +22,23 @@ const JoinedBoard = () => {
       {Rooms.map((room) => (
         <Link to={`/room/${room._id}`}>
           <Flex
-            backgroundColor=""
+            backgroundColor="gray.700"
             p="10px"
             mt="5"
             borderRadius="5px"
-            w="90%"
-            borderWidth="1px"
+            w="60%"
+            height="120px"
             alignItems="center"
-            justifyContent="flex-start"
+            justifyContent="center"
             m="10px"
-            flexDirection="row"
+            flexDirection="column"
           >
-            <Avatar name="DimChai" backgroundColor="#a7c5ff" color="white" />
-            <Text
-              fontWeight="bold"
-              fontSize="large"
-              color="gray"
-              mt="5px"
-              ml="10px"
-            >
+            <Avatar
+              name={room.roomName}
+              color="white"
+              backgroundColor="blue.500"
+            />
+            <Text fontWeight="bold" fontSize="large" color="gray.400" mt="5px">
               {room.roomName}
             </Text>
           </Flex>

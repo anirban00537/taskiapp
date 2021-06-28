@@ -9,6 +9,7 @@ import SearchMember from "../components/YourBoard/SearchMember";
 import ViewMembers from "../components/YourBoard/ViewMembers";
 import empty from "./empty.png";
 import { getAndSetRoomTaskAction } from "../state/action/RoomTaskAction";
+import TaskStatistic from "../components/TaskStats/TaskStatistic";
 
 const YourRoom = () => {
   const { id } = useParams();
@@ -24,7 +25,12 @@ const YourRoom = () => {
     dispatch(getAndSetRoomTaskAction(Adminid, id));
   }, [id]);
   return (
-    <Flex width="100%" flexDirection="column" backgroundColor="">
+    <Flex
+      width="100%"
+      flexDirection="column"
+      backgroundColor="#1a202c"
+      height="100vh"
+    >
       <TaskStats
         showCreate={false}
         companyName={room?.roomName}
@@ -32,6 +38,15 @@ const YourRoom = () => {
         completed={completed?.length}
         incomolete={notCompleted?.length}
       />
+      {/* <Grid templateColumns="repeat(2, 1fr)">
+        <TaskStatistic
+          showCreate={false}
+          companyName={room?.roomName}
+          total={roomTasks?.length}
+          completed={completed?.length}
+          incomolete={notCompleted?.length}
+        />
+      </Grid> */}
 
       <Flex alignItems="center" justifyContent="space-between">
         <Badge
@@ -41,14 +56,15 @@ const YourRoom = () => {
           ml="20px"
           fontSize="15px"
           fontWeight="bold"
-          color="blue.400"
+          color="gray.300"
+          backgroundColor="gray.700"
         >
           Total Room Members {room?.roomMembers.length}
           <ViewMembers members={room?.roomMembers} roomID={id} />
         </Badge>
 
         <Text
-          fontSize="3xl"
+          fontSize="2xl"
           fontWeight="bold"
           color="#a9aec4"
           textAlign="center"

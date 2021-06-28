@@ -34,7 +34,7 @@ const TaskModal = ({ isOpen, date, onClose, task }) => {
                 fontSize="2xl"
                 fontWeight="bold"
                 width="280px"
-                color="gray.500"
+                color="gray.300"
                 mt="10px"
                 mb="5px"
               >
@@ -45,7 +45,7 @@ const TaskModal = ({ isOpen, date, onClose, task }) => {
                 fontSize="2xl"
                 fontWeight="bold"
                 width="280px"
-                color="gray.500"
+                color="gray.300"
                 mt="10px"
                 mb="5px"
               >

@@ -1,12 +1,6 @@
 import { useState } from "react";
 import {
   Button,
-  Drawer,
-  useDisclosure,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerHeader,
-  DrawerBody,
   Flex,
   Menu,
   MenuButton,
@@ -20,8 +14,10 @@ import { Link, useHistory } from "react-router-dom";
 import {
   ChevronDownIcon,
   HamburgerIcon,
+  StarIcon,
   SunIcon,
   MoonIcon,
+  EditIcon,
 } from "@chakra-ui/icons";
 import { logoutFunction } from "../../state/action/AuthAction";
 import { useDispatch } from "react-redux";
@@ -35,14 +31,14 @@ const DrawerComponent = () => {
     history.push("/");
   };
   const { colorMode, toggleColorMode } = useColorMode();
-
+  const name = localStorage.getItem("name");
+  const email = localStorage.getItem("email");
   return (
     <Flex
       alignItems="center"
       height="80px"
-      borderBottomWidth="1px"
-      borderColor="black.350"
       justifyContent="space-between"
+      backgroundColor="#1c2635"
     >
       <Flex alignItems="center" ml="30px" justifyContent="flex-start">
         <Box fontSize="32px" fontWeight="bold" color="#70a1ff">
@@ -51,9 +47,11 @@ const DrawerComponent = () => {
       </Flex>
       <Flex alignItems="center" ml="30px" justifyContent="flex-start">
         <Box ml="20px" fontWeight="bold" fontSize="19px" color="#70a1ff">
+          <StarIcon mr="5px" mb="3px" />
           <Link to="/">Home</Link>
         </Box>
         <Box ml="20px" fontWeight="bold" fontSize="19px" color="#70a1ff">
+          <EditIcon mr="5px" mb="3px" />
           <Link to="/personal">Personal</Link>
         </Box>
       </Flex>
@@ -62,23 +60,18 @@ const DrawerComponent = () => {
         <MenuButton
           as={Button}
           mr="20px"
-          backgroundColor="white"
+          backgroundColor="#1c2635"
+          color="gray.300"
           rightIcon={<ChevronDownIcon />}
         >
-          Actions
+          {name}
         </MenuButton>
         <MenuList>
-          <MenuItem onClick={makeUserLogout}>Logout</MenuItem>
           <MenuItem>
-            <Button onClick={toggleColorMode}>
-              Toggle to Change Theme
-              {colorMode === "light" ? (
-                <MoonIcon ml="6px" />
-              ) : (
-                <SunIcon ml="6px" />
-              )}
-            </Button>
+            {" "}
+            <Text>{email}</Text>
           </MenuItem>
+          <MenuItem onClick={makeUserLogout}>Logout</MenuItem>
         </MenuList>
       </Menu>
     </Flex>

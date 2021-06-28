@@ -48,9 +48,10 @@ const AddYourRoomTask = ({ members, roomId, adminUid }) => {
       <Button
         ml="10px"
         leftIcon={<AddIcon />}
-        color="gray.500"
+        color="gray.300"
         mt="7px"
         onClick={onOpen}
+        backgroundColor="gray.700"
       >
         Create New Task
       </Button>

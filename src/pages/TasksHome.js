@@ -33,7 +33,7 @@ const TasksHome = () => {
       className=""
       width="100%"
       flexDirection="column"
-      backgroundColor=""
+      backgroundColor="gray.800"
       height="100vh"
     >
       <TaskStats

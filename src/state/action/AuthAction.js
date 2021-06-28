@@ -9,6 +9,9 @@ export const userSigninAction = (userData) => async (dispatch) => {
     if (data.token) {
       localStorage.setItem("token", data.token);
       localStorage.setItem("uid", data.user._id);
+      localStorage.setItem("name", data.user.name);
+      localStorage.setItem("email", data.user.email);
+
       console.log("setting auth true");
       dispatch(setAuthTrue());
       console.log("setting data for task");

@@ -11,11 +11,12 @@ const Room = () => {
   const dispatch = useDispatch();
   const { joinedroom } = useSelector((state) => state.joinedroom);
   const room = joinedroom.find((room) => room._id === id);
-
   const roomTasks = useSelector(
     (state) => state.joinedroomTask.joinedroomTasks
   );
-  console.log(roomTasks, "roomTasksssssss");
+  const completed = roomTasks.filter((task) => task.complete == true);
+  const notCompleted = roomTasks.filter((task) => task.complete == false);
+  console.log(room, "found room");
   const userID = localStorage.getItem("uid");
   const getJoinedRoomTask = async () => {
     dispatch(getAndSetJoinedRoomTaskAction(userID, id));
@@ -24,13 +25,19 @@ const Room = () => {
     getJoinedRoomTask();
   }, []);
   return (
-    <Flex className="" width="100%" flexDirection="column" height="100vh">
+    <Flex
+      className=""
+      width="100%"
+      flexDirection="column"
+      height="100vh"
+      backgroundColor="gray.800"
+    >
       <TaskStats
-        companyName="BrainBoxBD"
         showCreate={false}
-        total={9}
-        completed={7}
-        incomolete={2}
+        companyName={room?.roomName}
+        total={roomTasks?.length}
+        completed={completed?.length}
+        incomolete={notCompleted?.length}
       />
       <Text fontSize="3xl" fontWeight="bold" color="#a9aec4" textAlign="center">
         BrainBoxBD

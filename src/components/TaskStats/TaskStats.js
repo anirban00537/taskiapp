@@ -29,7 +29,7 @@ const TaskStats = ({
           alignItems="center"
           justifyContent="center"
           boxShadow="md"
-          backgroundColor=""
+          backgroundColor="#1c2635"
         >
           {showCreate ? (
             <AddTask />
@@ -47,7 +47,7 @@ const TaskStats = ({
           alignItems="center"
           justifyContent="center"
           boxShadow="md"
-          backgroundColor=""
+          backgroundColor="#1c2635"
         >
           <Flex
             height="50px"
@@ -55,7 +55,7 @@ const TaskStats = ({
             alignItems="center"
             justifyContent="center"
             borderWidth="6px"
-            borderColor="#70a1ff"
+            borderColor="#4c5971"
             borderRadius="50%"
             backgroundColor="#70a1ff"
             mr="10px"
@@ -65,10 +65,8 @@ const TaskStats = ({
               {total}
             </Text>
           </Flex>
-          {/* <Text fontSize="4xl" mr="5px" fontWeight="medium" color="#70a1ff">
-            {total}
-          </Text> */}
-          <Text fontSize="2xl" fontWeight="bold" color="#70a1ff">
+
+          <Text fontSize="2xl" fontWeight="bold" color="gray.400">
             Total Tasks
           </Text>
         </Flex>
@@ -79,7 +77,7 @@ const TaskStats = ({
           alignItems="center"
           justifyContent="center"
           boxShadow="md"
-          backgroundColor=""
+          backgroundColor="#1c2635"
         >
           <Flex
             height="50px"
@@ -87,9 +85,9 @@ const TaskStats = ({
             alignItems="center"
             justifyContent="center"
             borderWidth="6px"
-            borderColor="#70a1ff"
+            borderColor="#597568"
             borderRadius="50%"
-            backgroundColor="#70a1ff"
+            backgroundColor="#5cd69e"
             mr="10px"
             p="24px"
           >
@@ -98,7 +96,7 @@ const TaskStats = ({
             </Text>
           </Flex>
 
-          <Text fontSize="2xl" fontWeight="medium" color="#70a1ff">
+          <Text fontSize="2xl" fontWeight="medium" color="gray.400">
             Completed
           </Text>
         </Flex>
@@ -109,7 +107,7 @@ const TaskStats = ({
           alignItems="center"
           justifyContent="center"
           boxShadow="md"
-          backgroundColor=""
+          backgroundColor="#1c2635"
         >
           <Flex
             height="50px"
@@ -117,9 +115,9 @@ const TaskStats = ({
             alignItems="center"
             justifyContent="center"
             borderWidth="6px"
-            borderColor="#70a1ff"
+            borderColor="#6f3838fa"
             borderRadius="50%"
-            backgroundColor="#70a1ff"
+            backgroundColor="#e53e3e"
             mr="10px"
             p="24px"
           >
@@ -128,7 +126,7 @@ const TaskStats = ({
             </Text>
           </Flex>
 
-          <Text fontSize="2xl" fontWeight="medium" color="#70a1ff">
+          <Text fontSize="2xl" fontWeight="medium" color="gray.400">
             Tasks Left
           </Text>
         </Flex>

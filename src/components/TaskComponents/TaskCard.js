@@ -22,13 +22,11 @@ const TaskCard = ({ task, date, deleteTask, updateTaskStatus }) => {
     <Box
       maxW="sm"
       borderRadius="10px"
-      backgroundColor=""
       overflow="hidden"
       width="270px"
       padding="20px"
       mt="20px"
-      borderWidth="1px"
-      // backgroundColor="gray.50"
+      backgroundColor="gray.700"
       boxShadow="md"
       onDoubleClick={() => {
         task.complete === true
@@ -61,6 +59,7 @@ const TaskCard = ({ task, date, deleteTask, updateTaskStatus }) => {
           onClick={() => {
             deleteTask(task._id);
           }}
+          color="white"
         />
       </Flex>
       <Flex flexDirection="column" alignItems="flex-start">
@@ -71,7 +70,7 @@ const TaskCard = ({ task, date, deleteTask, updateTaskStatus }) => {
             fontWeight="medium"
             width="200px"
             isTruncated
-            color="gray.500"
+            color="gray.300"
             mt="10px"
             mb="10px"
           >
@@ -83,7 +82,7 @@ const TaskCard = ({ task, date, deleteTask, updateTaskStatus }) => {
             fontWeight="medium"
             width="200px"
             isTruncated
-            color="gray.500"
+            color="gray.300"
             mt="10px"
             mb="10px"
           >
@@ -96,7 +95,7 @@ const TaskCard = ({ task, date, deleteTask, updateTaskStatus }) => {
           fontWeight="normal"
           width="200px"
           isTruncated
-          color="gray.500"
+          color="gray.300"
           mt="2px"
           mb="10px"
         >
@@ -112,7 +111,7 @@ const TaskCard = ({ task, date, deleteTask, updateTaskStatus }) => {
         {task.complete ? (
           <Badge
             m="0px"
-            backgroundColor="blue.300"
+            backgroundColor="#2ecc71"
             borderRadius="6px"
             fontSize="x-small"
             variant="solid"
@@ -126,12 +125,12 @@ const TaskCard = ({ task, date, deleteTask, updateTaskStatus }) => {
             m="0px"
             borderRadius="6px"
             fontSize="x-small"
-            backgroundColor="blue.300"
+            backgroundColor="red.300"
             variant="solid"
             p="5px"
             pt="6px"
           >
-            incompleted <CloseIcon mb="3px" />
+            Pending <CloseIcon mb="3px" />
           </Badge>
         )}
         <Button
@@ -141,10 +140,8 @@ const TaskCard = ({ task, date, deleteTask, updateTaskStatus }) => {
           onClick={() => {
             onOpen();
           }}
-          borderWidth="0px"
-          borderColor="gray.400"
           color="gray.400"
-          backgroundColor=""
+          backgroundColor="gray.700"
           borderRadius="2px"
         >
           <Text>See Details</Text> <ArrowRightIcon mt="3px" ml="3px" />

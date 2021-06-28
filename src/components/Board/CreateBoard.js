@@ -34,9 +34,13 @@ const CreateBoard = () => {
         borderWidth="1px"
         p="20px"
         onClick={onOpen}
-        backgroundColor="#a7c5ff"
+        backgroundColor="gray.700"
+        color="gray.300"
+        borderColor="gray.600"
+        width="50px"
+        height="10px"
       >
-        <AddIcon fontSize="2xl" color="white" fontWeight="bold" />
+        <AddIcon fontSize="medium" fontWeight="bold" />
       </Button>
       <Drawer
         isOpen={isOpen}
@@ -45,7 +49,7 @@ const CreateBoard = () => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent backgroundColor="gray.800" color="white">
           <DrawerCloseButton />
           <DrawerHeader>Create your board</DrawerHeader>
 
@@ -63,7 +67,7 @@ const CreateBoard = () => {
               Cancel
             </Button>
             <Button colorScheme="blue" onClick={createARoom}>
-              Save
+              Create
             </Button>
           </DrawerFooter>
         </DrawerContent>

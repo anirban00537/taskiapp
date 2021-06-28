@@ -13,6 +13,7 @@ export const RoomTaskSlice = createSlice({
     },
     deltRoomTask: (state, { payload }) => {
       state.roomTasks = state.roomTasks.filter((task) => task._id !== payload);
+      console.log("delete calling");
     },
   },
 });

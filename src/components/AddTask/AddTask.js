@@ -35,8 +35,8 @@ const AddTask = () => {
     <>
       <Button
         leftIcon={<AddIcon />}
-        colorScheme="white"
-        color="gray.500"
+        backgroundColor="gray.700"
+        color="gray.300"
         mt="7px"
         onClick={onOpen}
       >

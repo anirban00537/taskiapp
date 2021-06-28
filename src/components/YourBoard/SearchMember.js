@@ -40,7 +40,8 @@ const SearchMember = ({ roomID }) => {
       <Button
         ml="10px"
         leftIcon={<AddIcon />}
-        color="gray.500"
+        color="gray.300"
+        backgroundColor="gray.700"
         mt="7px"
         onClick={onOpen}
       >

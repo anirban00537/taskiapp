@@ -6,6 +6,7 @@ import {
   Flex,
   Grid,
   IconButton,
+  Image,
   Text,
 } from "@chakra-ui/react";
 import CreateBoard from "../components/Board/CreateBoard";
@@ -13,7 +14,7 @@ import JoinedBoard from "../components/YourBoard/JoinedBoard";
 import { getAndSetRoomAction } from "../state/action/RoomAction";
 import YourBoard from "../components/YourBoard/YourBoard";
 import { useEffect } from "react";
-
+import empty from "./—Pngtree—empty box png_5841594.png";
 import { useDispatch, useSelector } from "react-redux";
 
 const Dashboard = () => {
@@ -29,17 +30,30 @@ const Dashboard = () => {
       alignItems="center"
       w="100%"
       flexDirection="column"
-      backgroundColor=""
+      backgroundColor="gray.800"
       height="100vh"
     >
       <Flex flexDirection="column" w="90%" mt="20px">
-        <Text mb="10px" color="gray" fontWeight="bold" fontSize="32px">
+        <Text mb="10px" color="gray.300" fontWeight="medium" fontSize="28px">
           Your Board <CreateBoard />
         </Text>
-        <YourBoard rooms={rooms} />
+        {rooms.length <= 0 ? (
+          <Flex
+            w="100%"
+            alignItems="center"
+            justifyContent="center"
+            height="300px"
+            flexDirection="column"
+          >
+            <Image src={empty} boxSize="180px" />
+            <Text fontSize="26px">No Room Available</Text>
+          </Flex>
+        ) : (
+          <YourBoard rooms={rooms} />
+        )}
       </Flex>
       <Flex flexDirection="column" w="90%" mt="20px">
-        <Text mb="10px" color="gray" fontWeight="bold" fontSize="32px">
+        <Text mb="10px" color="gray.300" fontWeight="medium" fontSize="28px">
           Joined Board
         </Text>
         <JoinedBoard />

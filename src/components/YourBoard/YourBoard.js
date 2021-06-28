@@ -19,11 +19,11 @@ const YourBoard = ({ rooms }) => {
 
   const handleOver = (id) => {
     setDltBtn(id);
-  }
+  };
 
   const handleLeave = () => {
     setDltBtn(false);
-  }
+  };
   return (
     <Grid templateColumns="repeat(5, 1fr)" w="100%">
       {rooms.map((room) => (
@@ -32,42 +32,52 @@ const YourBoard = ({ rooms }) => {
           onMouseLeave={() => handleLeave(room._id)}
         >
           <Flex
-            backgroundColor=""
+            flexDirection="column"
             p="10px"
             mt="5"
             borderRadius="5px"
-            w="90%"
-            borderWidth="1px"
+            w="60%"
             alignItems="center"
-            justifyContent='space-between'
+            justifyContent="space-between"
             m="10px"
-            flexDirection="row"
+            backgroundColor="gray.700"
           >
-            <Link to={`/your/room/${ room._id }`}>
+            <Link to={`/your/room/${room._id}`}>
               <Box
                 display="flex"
-                flexDirection="row"
-                alignItems="center" >
-                <Avatar
-                  name={room.roomName}
-                  backgroundColor="#a7c5ff"
-                  color="white"
-                />
+                flexDirection="column"
+                alignItems="center"
+                alignItems="center"
+                height="120px"
+                w="100%"
+                p="10px"
+              >
+                <Avatar name={room.roomName} backgroundColor="blue.500" />
                 <Text
                   fontWeight="bold"
                   fontSize="large"
-                  color="gray"
+                  color="gray.400"
                   mt="5px"
-                  ml="10px"
                 >
                   {room.roomName}
                 </Text>
+                <Badge
+                  fontSize="11px"
+                  variant="outline"
+                  backgroundcolor="gray.300"
+                  color="gray.300"
+                  mt="10px"
+                >
+                  Total Members {room.roomMembers.length}
+                </Badge>
               </Box>
             </Link>
             <Box>
               <CloseButton
                 display={dltBtn === room._id ? "block" : "none"}
-                onClick={() => dispatch(deleteRoomAction(room._id))} />
+                onClick={() => dispatch(deleteRoomAction(room._id))}
+                color="gray.400"
+              />
             </Box>
           </Flex>
         </Box>
